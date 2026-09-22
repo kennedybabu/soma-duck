@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 
 const montserrat = Montserrat({
@@ -24,7 +26,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <AuthProvider>
-          {children}
+          <Navbar />
+          <main>
+            {children}
+          </main>
+          <Footer />
         </AuthProvider>
       </body>
     </html>

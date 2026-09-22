@@ -1,3 +1,6 @@
+"use client";
+
+
 import { RiMenu3Fill, RiDashboardLine, RiUserLine } from "react-icons/ri";
 import { PiUserCircleThin } from "react-icons/pi";
 import { SiDuckduckgo } from "react-icons/si";
@@ -50,7 +53,7 @@ export default function Navbar() {
 
 
         {/* smaller screened devices sidebar */}
-        <div className={`w-[75%] bg-[#ffffff] text-[#747579] shadow-md top-0 left-0 z-[50] h-screen fixed transition-transform duration-300 ${sidebarShowing ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className={`w-[85%] bg-[#ffffff] text-[#747579] shadow-md top-0 left-0 z-[50] h-screen fixed transition-transform duration-300 ${sidebarShowing ? "translate-x-0" : "-translate-x-full"}`}>
             <div className="p-5">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
