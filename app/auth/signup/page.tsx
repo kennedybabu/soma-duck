@@ -7,7 +7,7 @@ import Select from 'react-select'
 
 export default function Signup() {
 
-        const inputStyles = {
+    const inputStyles = {
         'border' : '1px solid #D9D9D9',
         'padding': '5px 8px',
         'margin': '10px 0',

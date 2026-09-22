@@ -6,6 +6,9 @@ import Link from "next/link"
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { url } from "inspector";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
+import { error } from "console";
 
 
 export default function Login() {
@@ -13,6 +16,9 @@ export default function Login() {
         email:'',
         password: ''
     })
+
+    const router = useRouter();
+    const {login } = useAuth();
 
     const inputStyles = {
         'border' : '1px solid #D9D9D9',
@@ -27,16 +33,21 @@ export default function Login() {
         'backgroundPosition' : 'center'
     } 
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
+        console.log("trying to =>", loginUser);
+
+        try {
+            await login(loginUser);
+            router.push("/dashboard");
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLogginUser({...loginUser, [e.target.id] : e.target.value})
-    }
-
-    async function onSubmit() {
-        
     }
 
     return (
