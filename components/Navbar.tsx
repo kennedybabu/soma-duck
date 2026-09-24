@@ -4,29 +4,33 @@
 import { RiMenu3Fill, RiDashboardLine, RiUserLine } from "react-icons/ri";
 import { PiUserCircleThin } from "react-icons/pi";
 import { SiDuckduckgo } from "react-icons/si";
-import {  useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { VscClose, VscHome } from "react-icons/vsc";
 import { TbListLetters } from "react-icons/tb";
 import { HiOutlineCog6Tooth } from "react-icons/hi2";
-// import { UserContext } from "../context/AuthContext";
 import { MdOutlineLogin,MdOutlineLogout } from "react-icons/md";
 import Link from "next/link";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Navbar() {
 
     const [sidebarShowing, setSidebarShowing] = useState(false);
-    const user = {};
-    
+    const { user, logout } = useAuth();    
+
+    useEffect(() => {
+        console.log(user)
+    }, [])
+
 
     const toggleSidebar = () => {
         setSidebarShowing(!sidebarShowing)
     }
 
     return (
-            <div className="w-full h-[64px] relative max-w-[1272px] mx-auto flex items-center justify-between px-5">
+    <div className="w-full h-[64px] relative max-w-[1272px] px-5 md:px-0 mx-auto flex items-center justify-between">
         <h2 className="font-bold text-2xl flex items-center gap-2 cursor-pointer">
             <Link href={"/"}><SiDuckduckgo className="text-4xl"/></Link>
-            <span className="hidden md:flex">Quik <span className="text-[#FDA32E]">Duck</span></span>
+            <span className="hidden md:flex">Soma <span className="text-[#FDA32E]">Duck</span></span>
         </h2>
 
         {/* hide links on smaller screened devices */}
@@ -66,9 +70,9 @@ export default function Navbar() {
                                         </div>
                                     </div>
                                     <div>
-                                        <small className="">user role</small>
-                                        <h6 className="font-bold text-[14px] text-black"> user first and last names</h6>
-                                        <small>user email</small>
+                                        <small className="">{user.role}</small>
+                                        <h6 className="font-bold text-[14px] text-black">{user.firstName} {user.lastName}</h6>
+                                        <small>{user.email}</small>
                                     </div>
                             
                             </div> : null
@@ -82,14 +86,14 @@ export default function Navbar() {
                 <hr className="my-8" />
                 <nav>
                     <ul className="flex flex-col gap-y-5">
-                        {/* { user.role === "STUDENT" ? 
-                            <Link href={`user/profile/${user.id}`} onClick={toggleSidebar} className="flex items-center gap-2 font-bold"><RiUserLine />Profile</Link> : null 
+                        { user?.role === "STUDENT" ? 
+                            <Link href={`/userprofile/${user.id}`} onClick={toggleSidebar} className="flex items-center gap-2 font-bold"><RiUserLine />Profile</Link> : null 
                         }
                         <Link className="flex items-center gap-2 font-bold" href={"/"} onClick={toggleSidebar}><VscHome />Home</Link>
                         {
-                            user.role === "INSTRUCTOR" ? 
+                            user?.role === "INSTRUCTOR" ? 
                             <Link onClick={toggleSidebar} href={"instructor/dashboard"} className="flex items-center gap-2 font-bold"><RiDashboardLine />Dashboard</Link> : null
-                        } */}
+                        }
                         <Link href={""} onClick={toggleSidebar} className="flex items-center gap-2 font-bold"><TbListLetters />Courses</Link>
                         <Link href={""} className="flex items-center gap-2 font-bold"><HiOutlineCog6Tooth />Settings</Link>
                         {user ? 

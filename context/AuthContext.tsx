@@ -3,6 +3,7 @@
 import { getLoggedInUserUrl, loginUrl, registerUrl } from "@/lib/api";
 import { LoginPayload, SignupPayload, User } from "@/types/auth";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface UserContextType {
@@ -20,6 +21,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [token, setUserToken ] = useState<string | null>(null);
     const [hydrated, setHydrated] = useState(false);
+    const router = useRouter();
 
 
 
@@ -58,6 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     function logout() {
         setUser(null);
         setUserToken(null);
+        router.push("/")
 
         localStorage.removeItem("user");
         localStorage.removeItem("userToken")

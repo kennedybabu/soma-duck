@@ -30,7 +30,7 @@ export default function TrendingCourseTile({ course }: TrendingCourseTileProps){
             </div>
 
             <div className="py-5 text-[#747579]">
-              <Link href={"/course"}>
+              <Link href={`/course/${course.id}`}>
                 <h3 className="font-bold text-[21px] mb-4 cursor-pointer">{course.title}</h3>
               </Link>
               <div className="w-full text-[#747579] my-3 text-sm flex justify-between">

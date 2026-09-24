@@ -10,7 +10,6 @@ interface CourseTileProps {
 
 export default function CourseTile({ course }: CourseTileProps) {
 
-
     return (
     <div>
         <div className="rounded-lg shadow-sm h-[527px] w-full md:w-[300px] md:h-[480px]">
@@ -25,7 +24,7 @@ export default function CourseTile({ course }: CourseTileProps) {
                 <PiHeart className="text-2xl cursor-pointer"/>
               </div>
               <div>
-                <Link href={"/course"}>
+                <Link href={`/course/${course.id}`}>
                   <h5 className="text-[21px] mb-2 font-bold">{course.title}</h5>
                 </Link>
                 <p className="mb-2 text-[15px] text-[#747579]">Lorem ipsum dolor sit amet. Quod fugiat illo consequatur animi.</p>

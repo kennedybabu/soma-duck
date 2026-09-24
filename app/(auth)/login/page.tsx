@@ -1,14 +1,11 @@
 "use client"
 
-
 import { useState } from "react"
 import Link from "next/link"
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
-import { url } from "inspector";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { error } from "console";
 
 
 export default function Login() {

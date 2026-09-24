@@ -14,12 +14,14 @@ export interface SignupPayload {
 }
 
 export interface User {
-    id: string;
+    createdAt: string;
+    id: number;
     firstName: string;
     lastName: string;
     email: string;
     phoneNumber: string;
     role: string;
+    token: string;
 }
 
 export interface AuthResponse {

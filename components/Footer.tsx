@@ -9,7 +9,7 @@ export default function Footer() {
                 <div>
                     <h2 className="font-bold text-2xl flex mb-3 items-center gap-2 cursor-pointer">
                         <SiDuckduckgo className="text-black text-3xl"/>
-                        <span className="text-black">Quik <span className="text-[#FDA32E]">Duck</span></span>
+                        <span className="text-black">Soma <span className="text-[#FDA32E]">Duck</span></span>
                     </h2>
                     <small className="my-4">Eduport education theme, built specifically for the education centers which is dedicated to teaching and involve learners.</small>
                     <div className="flex my-5 item-center gap-3">

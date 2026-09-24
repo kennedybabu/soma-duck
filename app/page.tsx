@@ -1,26 +1,24 @@
 "use client";
 
 import { HiCheckBadge } from "react-icons/hi2";
-import HeroPNG from './../assets/backgrounds/hero.png';
-// import HeaderSVG from "../components/svgs/HeaderSVG";
-// import { HeroRightSVG } from "../components/svgs/HeroRightSVG";
 import { RiComputerLine } from "react-icons/ri";
 import { AiOutlineUser } from "react-icons/ai";
 import { PiGraduationCapLight } from "react-icons/pi";
 import { BsPatchCheck } from "react-icons/bs";
-// import { CourseTile } from "../components/CourseTile";
-// import { TrendingCourseTile } from "../components/TrendingCourseTile";
-// import { RoundBGSVG } from "../components/svgs/RoundBGSVG";
 import { BsShieldCheck } from "react-icons/bs";
-// import { RedDotSVG } from "../components/svgs/RedDotSVG";
 import { useState } from "react";
 import CourseTile from "@/components/CourseTile";
 import TrendingCourseTile from "@/components/TrendingCourseTile";
 import { Course } from "@/types/course";
+import Image from "next/image";
+import RedDotSVG from "@/components/svgs/RedDotSVG";
+import RoundBGSVG from "@/components/svgs/RoundBGSVG";
+import HeaderSVG from "@/components/svgs/HeaderSVG";
+import HeroRightSVG from "@/components/svgs/HeroRightSVG";
 
 export default function Home() {
   const text = "Online learning and teaching marketplace with 5K+ courses & 10M students. Taught by experts to help you acquire new skills.";
-  const [currentPopularCourses, setCurrentPopularCourses] = useState("Web Design");
+  const [currentPopularCourses, setCurrentPopularCourses] = useState("");
   const tabs = ["Web Design", "Development", "Graphic Design", "Marketing", "Finance"]
 
 
@@ -163,11 +161,18 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center w-full max-w-md md:max-w-none pb-10 md:pb-0">
-            {/* <img src={HeroPNG} alt="hero png" className="w-full h-auto object-contain max-h-[400px] md:max-h-none"/> */}
+            <Image 
+              src="/assets/hero.png"
+              alt="hero section image"
+              width={400}
+              height={400}
+              loading="eager"
+              className="w-full h-auto object-contain md:max-h-none"
+              />
         </div>
         <div>
-          {/* <HeaderSVG />
-          <HeroRightSVG /> */}
+          <HeaderSVG />
+          <HeroRightSVG />
         </div>
       </div>
     </section>
@@ -240,7 +245,7 @@ export default function Home() {
     </section>
 
     <section className="max-w-[1272px] mx-auto px-5 pt-14 pb-11">
-      <div className="grid grid-cols-1 px-5 lg:px-0 lg:grid-cols-4 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:px-5 lg:px-0 lg:grid-cols-4 md:grid-cols-2 gap-6">
         {tiles.map((tile) => (
           <CourseTile key={tile.id} course={tile} />
         ))}
@@ -277,7 +282,7 @@ export default function Home() {
             <div className="lg:col-span-7 lg:order-1 order-2">
               <div className="grid md:grid-cols-12 grid-cols-1 gap-7 lg:mt-12">
                 <div className="tile bg-[#ffffff] z-[10] rounded-lg p-[24px] md:col-span-7 shadow-md z-[50] relative md:mt-12 mt-1 md:mb-0 mb-12">
-                  {/* <RoundBGSVG /> */}
+                  <RoundBGSVG />
                   <div className="mb-4 flex items-center justify-center">
                     <div className="w-[40px] h-[40px] rounded-sm bg-red-200"></div>
                   </div>
@@ -287,7 +292,7 @@ export default function Home() {
                     <small className="font-bold text-black">Carolyn Cortiz</small>
                   </div>
                 </div>
-                <div className="md:col-span-5 md:block hidden">
+                <div className="md:col-span-5 hidden md:block">
                     <div className="relative bg-[#ffffff] inline-block rounded-lg p-6 shadow-md">
                       <div className="w-[56px] h-[56px] bg-yellow-500 flex items-center justify-center absolute top-0 right-0 start-full -translate-x-1/2 -translate-y-1/2 rounded-full">
                         <BsShieldCheck className="text-xl text-black"/>
@@ -332,7 +337,7 @@ export default function Home() {
               </div>
               <div className="grid md:grid-cols-12 grid-cols-1 gap-7 ">
                 <div className="md:col-span-7 md:mt-12 z-10 md:block hidden relative">
-                  {/* <RedDotSVG /> */}
+                  <RedDotSVG />
                   <div className="p-4 tile w-fit ml-auto bg-[#066ac9] rounded-xl text-white text-center shadow-sm">
                     <h2 className="text-xl font-bold">4.5/5.0</h2>
                     <small>stars</small>
