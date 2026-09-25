@@ -51,8 +51,10 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
-            <RiMenu3Fill onClick={toggleSidebar} className="cursor-pointer text-3xl md:hidden"/>          
-            <PiUserCircleThin className="text-4xl cursor-pointer hidden lg:flex"/>          
+            <RiMenu3Fill onClick={toggleSidebar} className="cursor-pointer text-3xl md:hidden"/>  
+            <Link href={`${ user?.role === "STUDENT" ? `${`/userprofile/${user.id}`}` : "instructor/dashboard"}`}>
+                <PiUserCircleThin className="text-4xl cursor-pointer hidden lg:flex"/>
+            </Link>        
         </div>
 
 
@@ -92,7 +94,7 @@ export default function Navbar() {
                         <Link className="flex items-center gap-2 font-bold" href={"/"} onClick={toggleSidebar}><VscHome />Home</Link>
                         {
                             user?.role === "INSTRUCTOR" ? 
-                            <Link onClick={toggleSidebar} href={"instructor/dashboard"} className="flex items-center gap-2 font-bold"><RiDashboardLine />Dashboard</Link> : null
+                            <Link onClick={toggleSidebar} href={"/dashboard"} className="flex items-center gap-2 font-bold"><RiDashboardLine />Dashboard</Link> : null
                         }
                         <Link href={""} onClick={toggleSidebar} className="flex items-center gap-2 font-bold"><TbListLetters />Courses</Link>
                         <Link href={""} className="flex items-center gap-2 font-bold"><HiOutlineCog6Tooth />Settings</Link>

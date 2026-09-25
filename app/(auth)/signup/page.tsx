@@ -1,9 +1,18 @@
 "use client"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import Link from "next/link"
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
-import Select from 'react-select'
+import Select, { SingleValue } from 'react-select'
+import { useAuth } from "@/hooks/useAuth";
+import { toast } from "@/components/ui/toast";
+import { useRouter } from "next/navigation";
+
+
+export interface RoleOption {
+    value: string;
+    label: string;
+}
 
 export default function Signup() {
 
@@ -25,6 +34,9 @@ export default function Signup() {
         { value: 'INSTRUCTOR', label: 'Instructor' },
     ]
 
+    const { register } = useAuth()
+    const router = useRouter()
+
     const [user, setUser] = useState({
         firstName: '',
         lastName: '',
@@ -36,25 +48,34 @@ export default function Signup() {
     })
 
     const [profileImageFile, setProfileImageFile] = useState(null);
-    // const navigate = useNavigate();
-    // const { register } = useContext(UserContext);
+   
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSubmit();
-        console.log(user)
+
+        try {
+            await register(user);
+            toast.add({
+                title: "Sgned Up",
+                description: "Account created",
+                type: "success"
+            })
+            router.push("/")
+        } catch(error) {
+            toast.add({
+                title: "Error",
+                description: error.message,
+                type: "error"
+            })
+        }
     }
 
-    async function onSubmit() {
-
-    }
-    
-    const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
-        // setUser({...user, [e.target.id] : e.target.value})
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+       setUser({...user, [e.target.id] : e.target.value })
     }
 
-    const handleRoleChange = (selectedOption: string) => {
-        // setUser(prev => ({...prev, role: selectedOption ? selectedOption.value : ''}))
+    const handleRoleChange = (selectedOption: SingleValue<RoleOption> ) => {
+        setUser(prev => ({...prev, role: selectedOption ? selectedOption.value : ''}))
     }
 
     const handleProfileImageChange = (e: React.FormEvent<HTMLFormElement>) => {
@@ -74,25 +95,26 @@ export default function Signup() {
                                 <div className="flex flex-col md:flex-row gap-2 w-full">
                                     <div className="flex flex-1 flex-col">
                                         <label htmlFor="firstName">First Name</label>
-                                        <input id="firstName" value={user.firstName}  style={inputStyles} type="text" placeholder="First Name ..."/>
+                                        <input id="firstName" onChange={handleChange} style={inputStyles} type="text" placeholder="First Name ..."/>
                                     </div>
                                     <div className="flex flex-1 flex-col">
                                         <label htmlFor="lastName">Last Name</label>
-                                        <input id="lastName" value={user.lastName} style={inputStyles} type="text" placeholder="Last Name ..."/>
+                                        <input id="lastName" onChange={handleChange} style={inputStyles} type="text" placeholder="Last Name ..."/>
                                     </div>
                                 </div>    
                                 <div className="flex flex-col">
                                     <label htmlFor="">Email</label>
-                                    <input id="email" style={inputStyles} value={user.email} type="text" placeholder="Enter your Email address..." />
+                                    <input id="email" style={inputStyles} onChange={handleChange} type="text" placeholder="Enter your Email address..." />
                                 </div>    
                                 <div className="flex flex-col">
                                     <label htmlFor="">Phone no.</label>
-                                    <input id="phoneNumber" style={inputStyles} type="text" value={user.phoneNumber} placeholder="Enter your phone no..." />
+                                    <input id="phoneNumber" style={inputStyles} type="text" onChange={handleChange} placeholder="Enter your phone no..." />
                                 </div>   
                                 <label>
                                     Role
                                     <Select 
                                         options={roleOptions} 
+                                        onChange={handleRoleChange}
                                         value={roleOptions.find(option => option.value === user.role || null)} 
                                         />
                                 </label>
@@ -102,7 +124,7 @@ export default function Signup() {
                                 </div>              
                                 <div className="flex flex-col">
                                     <label htmlFor="">Password</label>
-                                    <input style={inputStyles} id="password" type="password" value={user.password} placeholder="Enter a strong password..." />
+                                    <input style={inputStyles} id="password" type="password" onChange={handleChange} placeholder="Enter a strong password..." />
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <input type="checkbox" />
@@ -116,7 +138,7 @@ export default function Signup() {
                                     <button className="p-[4px] rounded-[4px] outline outline-[#D9D9D9] flex items-center gap-1 cursor-pointer"><FcGoogle />Login with Google</button>
                                     <button className="p-[4px] rounded-[4px] outline outline-[#D9D9D9] flex items-center gap-1 cursor-pointer"><FaApple />Login with Apple</button>
                                 </div>
-                                <small>Have an account already? <Link href="/auth/login" className="text-blue-600">Login</Link></small>
+                                <small>Have an account already? <Link href="/login" className="text-blue-600">Login</Link></small>
                             </div>
                         </div>
                     </div>

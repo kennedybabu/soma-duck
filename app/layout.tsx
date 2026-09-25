@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Geist } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toast";
+import ConditionalChrome from "@/components/ConditonalChrome";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 
 const montserrat = Montserrat({
@@ -18,18 +21,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  
+
   return (
     <html
       lang="en"
-      className={`${montserrat.className} h-full antialiased`}
+      className={cn("h-full", "antialiased", montserrat.className, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">
         <AuthProvider>
-          <Navbar />
-          <main>
-            {children}
-          </main>
-          <Footer />
+          <ConditionalChrome>{children}</ConditionalChrome>
+          <Toaster />
         </AuthProvider>
       </body>
     </html>

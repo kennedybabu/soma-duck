@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
+import { toast } from "@/components/ui/toast";
 
 
 export default function Login() {
@@ -37,9 +38,18 @@ export default function Login() {
 
         try {
             await login(loginUser);
+            toast.add({
+                title: "Log in",
+                description: "Logged in successfully",
+                type: "success"
+            })
             router.push("/dashboard");
         } catch (error) {
-            console.log(error.message)
+            toast.add({
+                title: "Error",
+                description: error.message,
+                type: "error"
+            })
         }
     }
 
@@ -76,7 +86,7 @@ export default function Login() {
                                 <button className="p-[4px] rounded-[4px] outline outline-[#D9D9D9] flex items-center gap-1 cursor-pointer"><FcGoogle /> Sign in with Google</button>
                                 <button className="p-[4px] rounded-[4px] outline outline-[#D9D9D9] flex items-center gap-1 cursor-pointer"><FaApple />Sign in with Apple</button>
                             </div>
-                            <small>Don&apos;t have an account? <Link href="/auth/signup" className="text-blue-600">Sign Up</Link></small>
+                            <small>Don&apos;t have an account? <Link href="/signup" className="text-blue-600">Sign Up</Link></small>
                         </div>
                     </div>
                 </div>
