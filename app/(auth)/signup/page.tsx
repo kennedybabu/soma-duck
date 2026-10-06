@@ -84,7 +84,8 @@ export default function Signup() {
     }
 
     return (
-       <div className="px-2 w-full h-screen flex flex-col md:flex-row">
+       <div className="px-2 w-full h-screen flex p-2 flex-col md:flex-row">
+            <Link href={"/"} className="text-sm underline italic text-blue-700">Head home</Link>
                 <div className="flex-1 flex items-center">
                     <div className="min-w-[404px] h-[638px] mx-auto mb-[35%] md:mb-[15%]">
                         <h2 className="text-[32px] font-bold">Get Started!</h2>

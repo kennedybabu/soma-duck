@@ -5,6 +5,8 @@ import { AuthProvider } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toast";
 import ConditionalChrome from "@/components/ConditonalChrome";
+import { Suspense } from "react";
+import { Spinner } from "@/components/ui/spinner";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -30,7 +32,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <AuthProvider>
-          <ConditionalChrome>{children}</ConditionalChrome>
+          <Suspense fallback={
+            <div className="flex min-h-screen bg-[#f5f7f9] w-full items-center justify-center">
+              <Spinner className="size-14"/>
+            </div>
+            }>
+            {/* <ConditzionalChrome> */}
+              {children}
+            {/* </ConditionalChrome> */}
+          </Suspense>
           <Toaster />
         </AuthProvider>
       </body>

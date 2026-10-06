@@ -1,9 +1,23 @@
+"use client"
+
 import { RiComputerLine } from "react-icons/ri";
 import { PiGraduationCapLight } from "react-icons/pi";
 import { IoDiamondOutline } from "react-icons/io5";
 import Link from "next/link";
+import { useAuthGuard } from "../../../../guards/useAuthGuard";
+import { Spinner } from "@/components/ui/spinner";
 
-export default function Dashboard() {
+const Dashboard = () => {
+
+    const { checking } = useAuthGuard(["INSTRUCTOR"]);
+
+    if(checking) {
+        return (
+            <div className="flex h-screen w-full items-center justify-center">
+                <Spinner />
+            </div>
+        )
+    }
 
 
     return (
@@ -89,3 +103,6 @@ export default function Dashboard() {
     </div>
     )
 }
+
+
+export default Dashboard;

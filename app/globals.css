@@ -127,3 +127,7 @@
     @apply font-sans;
     }
 }
+
+svg.star-svg {
+  display: inline !important;
+}

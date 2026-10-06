@@ -59,6 +59,7 @@ export default function Login() {
 
     return (
         <div className="w-full h-screen flex flex-col md:flex-row">
+            <Link href={"/"} className="text-sm mx-3 my-2 underline italic text-blue-700">Head home</Link>
             <div className="flex-1 flex items-center">
                 <div className="w-[404px] h-[638px] mx-auto my-auto">
                     <h2 className="text-[32px] font-bold">Welcome back!</h2>

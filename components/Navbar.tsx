@@ -11,11 +11,13 @@ import { HiOutlineCog6Tooth } from "react-icons/hi2";
 import { MdOutlineLogin,MdOutlineLogout } from "react-icons/md";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
 
     const [sidebarShowing, setSidebarShowing] = useState(false);
-    const { user, logout } = useAuth();    
+    const { user, logout } = useAuth();  
+    const router = useRouter();  
 
     useEffect(() => {
         console.log(user)
@@ -24,6 +26,12 @@ export default function Navbar() {
 
     const toggleSidebar = () => {
         setSidebarShowing(!sidebarShowing)
+    }
+
+    const handleLogout = () => {
+        setSidebarShowing(false)
+        logout()
+        router.push("/")
     }
 
     return (
@@ -52,9 +60,16 @@ export default function Navbar() {
 
         <div className="flex items-center gap-2">
             <RiMenu3Fill onClick={toggleSidebar} className="cursor-pointer text-3xl md:hidden"/>  
-            <Link href={`${ user?.role === "STUDENT" ? `${`/userprofile/${user.id}`}` : "instructor/dashboard"}`}>
-                <PiUserCircleThin className="text-4xl cursor-pointer hidden lg:flex"/>
-            </Link>        
+            { 
+                user ?
+                <Link href={`${ user?.role === "STUDENT" ? `${`/userprofile/${user.id}`}` : "instructor/dashboard"}`}>
+                    <PiUserCircleThin className="text-4xl cursor-pointer hidden lg:flex"/>
+                </Link>        
+                :                
+                <Link href={"/login"}>
+                    <PiUserCircleThin className="text-4xl cursor-pointer hidden lg:flex"/>
+                </Link> 
+            }
         </div>
 
 
@@ -99,7 +114,7 @@ export default function Navbar() {
                         <Link href={""} onClick={toggleSidebar} className="flex items-center gap-2 font-bold"><TbListLetters />Courses</Link>
                         <Link href={""} className="flex items-center gap-2 font-bold"><HiOutlineCog6Tooth />Settings</Link>
                         {user ? 
-                            <Link href={""} className="flex items-center gap-2 font-bold"><MdOutlineLogout />Logout</Link> : 
+                            <button onClick={handleLogout} className="flex cursor-pointer items-center gap-2 font-bold"><MdOutlineLogout />Logout</button> : 
                             <Link  onClick={toggleSidebar} href={"/login"} className="flex items-center gap-2 font-bold"><MdOutlineLogin />Login</Link> 
                         }
                     </ul>

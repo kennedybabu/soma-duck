@@ -12,7 +12,7 @@ export default function CourseTile({ course }: CourseTileProps) {
 
     return (
     <div>
-        <div className="rounded-lg shadow-sm h-[527px] w-full md:w-[300px] md:h-[480px]">
+        <div className="rounded-lg shadow-sm h-[527px] w-full md:w-[293px] md:h-[480px]">
           <div className="card-img rounded-tr-[10px] rounded-tl-[10px] h-[224px] w-full bg-purple-300">
 
           </div>

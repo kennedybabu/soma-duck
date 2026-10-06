@@ -10,9 +10,11 @@ import { LuUserPlus } from "react-icons/lu";
 import { IoMedalOutline } from "react-icons/io5";
 import { SlSocialGithub, SlSocialLinkedin, SlSocialYoutube } from "react-icons/sl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+// import ReactStars from "react-rating-stars-component";
+
+
+
 import {
-  Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -24,7 +26,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { FaStar } from "react-icons/fa";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, User } from "lucide-react";
+import CourseReview from "@/components/CourseReview";
+import { Rating } from "react-simple-star-rating";
 
 const items = [
   {
@@ -77,10 +81,60 @@ const items = [
   },
 ]
 
+const reviews = [
+    {
+        reviewer: "John Doe",
+        rating: 3
+    }, 
+    {
+        reviewer: "Mary Jane",
+        rating: 5
+    }, 
+    {
+        reviewer: "Leo Poldo",
+        rating: 4
+    }
+]
+
+const FAQs = [
+  {
+    value: "item-1",
+    trigger: "How Digital Marketing Work?",
+    content:
+      "Comfort reached gay perhaps chamber his six detract besides add. Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed laughing although the material does the exercise of. Up attempt offered ye civilly so sitting to. She new course gets living within Elinor joy. She rapturous suffering concealed.",
+  }, 
+    {
+    value: "item-2",
+    trigger: "What is SEO?",
+    content:
+      "Pleasure and so read the was hope entire first decided the so must have as on was want up of I will rival in came this touched got a physics to travelling so all especially refinement monstrous desk they was arrange the overall helplessly out of particularly ill are purer.Person she control of to beginnings view looked eyes Than continues its and because and given and shown creating curiously to more in are man were smaller by we instead the these sighed Avoid in the sufficient me real man longer of his how her for countries to brains warned notch important Finds be to the of on the increased explain noise of power deep asking contribution this live of suppliers goals bit separated poured sort several the was organization the if relations go work after mechanic But we've area wasn't everything needs of and doctor where would.xercise of. Up attempt offered ye civilly so sitting to. She new course gets living within Elinor joy. She rapturous suffering concealed.",
+  },
+   {
+    value: "item-3",
+    trigger: "Why should I join this course?",
+    content:
+      "Post no so what deal evil rent by real in. But her ready least set lived spite solid. September how men saw tolerably two behavior arranging. She offices for highest and replied one venture pasture. Applauded no discovery in newspaper allowance am northward. Frequently partiality possession resolution at or appearance unaffected me. Engaged its was the evident pleased husband. Ye goodness felicity do disposal dwelling no. First am plate jokes to began to cause a scale.Subjects he prospect elegance followed no overcamepossible it on.",
+  },
+    {
+    value: "item-4",
+    trigger: "What are the T&C for this program?",
+    content:
+      "Comfort reached gay perhaps chamber his six detract besides add. Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed laughing although the material does the exercise of. Up attempt offered ye civilly so sitting to. She new course gets living within Elinor joy. She rapturous suffering concealed.",
+  }, 
+    {
+    value: "item-5",
+    trigger: "What certificates will I receive on completion?",
+    content:
+      "Smile spoke total few great had never their too Amongst moments do in arrived at my replied Fat weddings servants but man believed prospect Companions understood is as especially pianoforte connection introduced Nay newspaper can sportsman are admitting gentleman belonging his Is oppose no he summer lovers twenty in Not his difficulty boisterous surrounded bed Seems folly if in given scale Sex contented dependent conveying advantage.",
+  }, 
+
+]
+
 export default function Course({ params } : { params: Promise<{ id: string }>}) {
     const { id } = use(params);
     const tabs = ["Overview", "Curriculum", "Instructor", "Reviews", "FAQs", "Comment"]
     const [currentTab, setCurrentTab] = useState("Overview");
+    const [rating, setRating] = useState(4.5)
 
     return (
         <div className="w-full mx-auto">
@@ -123,7 +177,7 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
             </section>
             <section className="py-12 bg-white">
                 <div className="w-full max-w-[1272px] rounded-md mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div className="grid grid-cols-1 rounded-md shadow-md lg:col-span-2">
+                    <div className="grid grid-cols-1 rounded-md shadow-2xl lg:col-span-2">
                         <div className="w-full p-2">
                             <Tabs defaultValue="" className="w-full">
                                 <TabsList className="py-6 bg-white">
@@ -173,9 +227,9 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                     {/* </Card> */}
                                 </TabsContent>   
                                 <TabsContent value="Curriculum">
-                                    <Accordion defaultValue={["item-1"]} className="w-full p-5 rounded-md">
+                                    <Accordion defaultValue={[""]} className="w-full p-5 rounded-md">
                                         {items.map((item) => (
-                                            <AccordionItem className="my-2 bg-gray-100 rounded-md px-3" key={item.value} value={item.value}>
+                                            <AccordionItem className="my-2 bg-gray-100 rounded-md px-3 cursor-pointer" key={item.value} value={item.value}>
                                             <AccordionTrigger className="font-bold my-1">{item.trigger}</AccordionTrigger>
                                             <AccordionContent className="my-2">{item.content}</AccordionContent>
                                             </AccordionItem>
@@ -231,12 +285,53 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                             <p className="mb-4">As it so contrasted oh estimating instrument. Size like body someone had. Are conduct viewing boy minutes warrant the expense? Tolerably behavior may admit daughters offending her ask own. Praise effect wishes change way and any wanted.</p>
                                         </div>
                                     </div>
-                                </TabsContent>                    
+                                </TabsContent>      
+                                <TabsContent value="Reviews">
+                                    <CardHeader>
+                                                <CardTitle className="text-xl lg:text-2.5xl text-black mb-4 font-bold">Our Student Reviews</CardTitle>
+                                    </CardHeader>
+                                    <div className="p-5">
+
+                                    <div className="w-full">
+                                        <div className="flex items-center gap-3">
+                                            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-black">4.5</h2>
+                                            <div className="flex items-center gap-2">
+                                                <Rating initialValue={rating} size={19} readonly={true}/>
+                                            </div>
+                                        </div>
+                                        <small className="text-[#747579]">(Based on todays review)</small>
+                                    </div>
+                                    <div>
+                                        {
+                                            reviews.map((review) => {
+                                                return (
+                                                    <CourseReview key={review.reviewer} user={review.reviewer} rating={review.rating}/>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    </div>
+                                </TabsContent>    
+                                <TabsContent value="FAQs">
+                                    <div className="p-5">
+                                        <CardHeader>
+                                                <CardTitle className="text-xl lg:text-2.5xl text-black mb-4 font-bold">Frequently Asked Questions</CardTitle>
+                                        </CardHeader>
+                                        <Accordion defaultValue={[""]} className="w-full">
+                                            {FAQs.map((item, index) => (
+                                                <AccordionItem className="my-2 border-b px-3 cursor-pointer" key={item.value} value={item.value}>
+                                                <AccordionTrigger className="font-bold flex items-center my-1"> <span className="text-[#9a9ea4] mr-5">0{index + 1}</span> {item.trigger}</AccordionTrigger>
+                                                <AccordionContent className="my-2">{item.content}</AccordionContent>
+                                                </AccordionItem>
+                                            ))}
+                                        </Accordion>
+                                    </div>
+                                </TabsContent>          
                             </Tabs>
                         </div>
                     </div>
                     <div className="grid grid-cols-1 lg:col-span-1 rounded-md">
-                        <div className="w-full h-[464px] shadow-md rounded-md p-2">
+                        <div className="w-full h-[464px] shadow-xl rounded-md p-2">
                             <div className="hero-img w-full bg-red-100 h-[291px] rounded-md">
 
                             </div>
@@ -255,7 +350,7 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                             </div>
                         </div>
 
-                        <div className="w-full p-3 my-5 rounded-md shadow-md text-[#747579]">
+                        <div className="w-full p-3 my-5 rounded-md shadow-2xl text-[#747579]">
                             <h3 className="text-center font-bold text-xl mb-4 text-black">This course includes</h3>
                             <div className="w-full">
                                 <div className="w-full text-[14px] flex flex-col gap-2">

@@ -1,5 +1,7 @@
 "use client";
 
+import { Spinner } from "@/components/ui/spinner";
+import { useAuthGuard } from "@/guards/useAuthGuard";
 import { useAuth } from "@/hooks/useAuth";
 import { CiSearch } from "react-icons/ci";
 import Select from "react-select";
@@ -10,7 +12,17 @@ export interface SelectOption {
 }
 
 
-export default function UserProfile() {
+const UserProfile = () =>  {
+
+    const { checking } = useAuthGuard(["STUDENT", "INSTRUCTOR", "ADMIN"])
+
+    if(checking) {
+        return (
+            <div className="flex h-screen w-full items-center justify-center">
+                <Spinner />
+            </div>
+        )
+    }
 
     const selectOptions = [
         { value: 'Newest', label: 'Newest' },
@@ -23,7 +35,7 @@ export default function UserProfile() {
         console.log(selectedOption.value)
     }
 
-    const { user } = useAuth()
+    // const { user } = useAuth()
 
     return (
         <div className='w-full h-full mx-auto'>
@@ -91,3 +103,5 @@ export default function UserProfile() {
     </div>
     )
 }
+
+export default UserProfile;
