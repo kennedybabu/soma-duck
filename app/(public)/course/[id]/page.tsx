@@ -8,8 +8,9 @@ import { use, useState } from "react";
 import { BsPatchCheckFill, BsTwitterX } from "react-icons/bs";
 import { LuUserPlus } from "react-icons/lu";
 import { IoMedalOutline } from "react-icons/io5";
-import { SlSocialGithub, SlSocialLinkedin, SlSocialYoutube } from "react-icons/sl";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { SlDislike, SlLike, SlSocialGithub, SlSocialLinkedin, SlSocialYoutube } from "react-icons/sl";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Comment from "@/components/comment"
 // import ReactStars from "react-rating-stars-component";
 
 
@@ -134,7 +135,15 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
     const { id } = use(params);
     const tabs = ["Overview", "Curriculum", "Instructor", "Reviews", "FAQs", "Comment"]
     const [currentTab, setCurrentTab] = useState("Overview");
-    const [rating, setRating] = useState(4.5)
+    const [rating, setRating] = useState(4.5);
+    const [comment, setComment] = useState("")
+
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        console.log(comment)
+    }
 
     return (
         <div className="w-full mx-auto">
@@ -326,7 +335,23 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                             ))}
                                         </Accordion>
                                     </div>
-                                </TabsContent>          
+                                </TabsContent>   
+                                <TabsContent value="Comment">
+                                    <CardHeader>
+                                        <CardTitle className="text-xl lg:text-2.5xl text-black mb-4 font-bold">Comments</CardTitle>
+                                    </CardHeader>
+
+                                    <Comment />
+                                    <Comment />
+                                    <div className="w-full p-2">
+                                        <form onSubmit={handleSubmit}>
+                                            <textarea onChange={(e) => setComment(e.target.value)} className="w-full border border-1 p-3" placeholder="Leave a comment..." id="comment" >
+
+                                            </textarea>
+                                            <button type="submit" className="cursor-pointer my-2 p-2 bg-blue-100 rounded-sm hover:shadow-sm transition">Comment</button>
+                                        </form>
+                                    </div>
+                                </TabsContent>       
                             </Tabs>
                         </div>
                     </div>
