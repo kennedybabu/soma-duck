@@ -43,7 +43,7 @@ export default function Login() {
                 description: "Logged in successfully",
                 type: "success"
             })
-            router.push("/dashboard");
+            router.push("/");
         } catch (error) {
             toast.add({
                 title: "Error",

@@ -18,7 +18,7 @@ export default function CourseTile({ course }: CourseTileProps) {
           </div>
           <div className="p-5">
               <div className="flex items-center justify-between">
-                <div className="rounded-md text-[12px] mb-2 py-[4px] px-[8px] text-green-600 font-bold bg-green-200">
+                <div className={`rounded-md text-[12px] mb-2 py-[6px] px-[10px] font-bold ${course.level === "All Level" ? "bg-green-200 text-green-600" : "bg-blue-200 text-blue-600"}`}>
                   {course.level}
                 </div>
                 <PiHeart className="text-2xl cursor-pointer"/>
@@ -35,7 +35,7 @@ export default function CourseTile({ course }: CourseTileProps) {
               </div>
               <hr className="my-2 text-[#747579]" />
             <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1">
+                <div className="flex text-[20px] items-center gap-1">
                   <div>
                     <PiClock className="text-red-600"/>
                   </div>

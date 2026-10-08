@@ -15,6 +15,7 @@ export interface SelectOption {
 const UserProfile = () =>  {
 
     const { checking } = useAuthGuard(["STUDENT", "INSTRUCTOR", "ADMIN"])
+    const { user } = useAuth()
 
     if(checking) {
         return (
@@ -35,7 +36,6 @@ const UserProfile = () =>  {
         console.log(selectedOption.value)
     }
 
-    // const { user } = useAuth()
 
     return (
         <div className='w-full h-full mx-auto'>

@@ -15,6 +15,7 @@ import RedDotSVG from "@/components/svgs/RedDotSVG";
 import RoundBGSVG from "@/components/svgs/RoundBGSVG";
 import HeaderSVG from "@/components/svgs/HeaderSVG";
 import HeroRightSVG from "@/components/svgs/HeroRightSVG";
+import { Rating } from "react-simple-star-rating";
 
 export default function Home() {
   const text = "Online learning and teaching marketplace with 5K+ courses & 10M students. Taught by experts to help you acquire new skills.";
@@ -156,8 +157,10 @@ export default function Home() {
           </section>
 
           <div className="flex my-5 flex-col items-center gap-2 lg:gap-5 md:flex-row">
-            <button className="py-3.25 px-6 bg-red-100 text-red-800 hover:bg-red-500 hover:text-white transition-all rounded-lg font-medium mb-6 md:mb-0 cursor-pointer">Get Started</button>
-            <button>View video</button>
+            <button className="order-2 md:order-1 my-4 md:my-0 py-3.25 px-6 bg-red-100 text-red-800 hover:bg-red-500 hover:text-white transition-all rounded-lg font-medium mb-6 md:mb-0 cursor-pointer">Get Started</button>
+            <div className="w-[60px] cursor-pointer h-[60px] bg-blue-100 flex items-center justify-center rounded-full">
+              <div className="w-[37px] h-[37px] bg-[#066ac9] flex items-center justify-center rounded-full"><p>\</p></div>
+            </div>
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center w-full max-w-md md:max-w-none pb-10 md:pb-0">
@@ -289,6 +292,7 @@ export default function Home() {
                   <div className="relative text-center flex flex-col">
                     <p className="mb-4 text-[15px]">Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed laughing</p>
                     <span>stars</span>
+                      <Rating initialValue={4} size={19} readonly={true}/>                    
                     <small className="font-bold text-black">Carolyn Cortiz</small>
                   </div>
                 </div>
@@ -340,7 +344,7 @@ export default function Home() {
                   <RedDotSVG />
                   <div className="p-4 tile w-fit ml-auto bg-[#066ac9] rounded-xl text-white text-center shadow-sm">
                     <h2 className="text-xl font-bold">4.5/5.0</h2>
-                    <small>stars</small>
+                      <Rating initialValue={4} size={16} readonly={true}/>                    
                     <p className="font-bold text-[14px]">Based on 3265 ratings</p>
                   </div>
                 </div>
@@ -351,7 +355,7 @@ export default function Home() {
                     At weddings believed laughing although the Moonlight newspaper up its enjoyment agreeable depending.
                   </p>
                   <div>
-                    <small>stars</small>
+                      <Rating initialValue={5} size={19} readonly={true}/>                    
                   </div>
                   <small className="font-bold text-black">Dennis Barrett</small>
 

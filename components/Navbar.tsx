@@ -109,7 +109,7 @@ export default function Navbar() {
                         <Link className="flex items-center gap-2 font-bold" href={"/"} onClick={toggleSidebar}><VscHome />Home</Link>
                         {
                             user?.role === "INSTRUCTOR" ? 
-                            <Link onClick={toggleSidebar} href={"/dashboard"} className="flex items-center gap-2 font-bold"><RiDashboardLine />Dashboard</Link> : null
+                            <Link onClick={toggleSidebar} href={`/dashboard`} className="flex items-center gap-2 font-bold"><RiDashboardLine />Dashboard</Link> : null
                         }
                         <Link href={""} onClick={toggleSidebar} className="flex items-center gap-2 font-bold"><TbListLetters />Courses</Link>
                         <Link href={""} className="flex items-center gap-2 font-bold"><HiOutlineCog6Tooth />Settings</Link>

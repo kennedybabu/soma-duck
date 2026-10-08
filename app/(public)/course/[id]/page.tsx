@@ -8,11 +8,9 @@ import { use, useState } from "react";
 import { BsPatchCheckFill, BsTwitterX } from "react-icons/bs";
 import { LuUserPlus } from "react-icons/lu";
 import { IoMedalOutline } from "react-icons/io5";
-import { SlDislike, SlLike, SlSocialGithub, SlSocialLinkedin, SlSocialYoutube } from "react-icons/sl";
+import { SlSocialGithub, SlSocialLinkedin, SlSocialYoutube } from "react-icons/sl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Comment from "@/components/comment"
-// import ReactStars from "react-rating-stars-component";
-
+import Comment from "@/components/comment";
 
 
 import {
@@ -27,9 +25,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { FaStar } from "react-icons/fa";
-import { GraduationCap, User } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import CourseReview from "@/components/CourseReview";
 import { Rating } from "react-simple-star-rating";
+import { useAuth } from "@/hooks/useAuth";
 
 const items = [
   {
@@ -97,6 +96,19 @@ const reviews = [
     }
 ]
 
+// const comments = [
+//     {   author: "John Doe",
+//         likes: 35,
+//         dislikes: 1,
+//         comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis facere saepe magni explicabo ratione!"
+//     },
+//     {   author: "Jane Doe",
+//         likes: 58,
+//         dislikes: 9,
+//         comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis facere saepe magni explicabo ratione!"
+//     }
+// ]
+
 const FAQs = [
   {
     value: "item-1",
@@ -137,12 +149,25 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
     const [currentTab, setCurrentTab] = useState("Overview");
     const [rating, setRating] = useState(4.5);
     const [comment, setComment] = useState("")
+    const { user } = useAuth();
+    const [comments, setComments] = useState([
+        {   author: "John Doe",
+        likes: 35,
+        dislikes: 1,
+        comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis facere saepe magni explicabo ratione!"
+        },
+        {   author: "Jane Doe",
+            likes: 58,
+            dislikes: 9,
+            comment: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis facere saepe magni explicabo ratione!"
+        }
+    ])
 
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         console.log(comment)
+        // setComments();        
     }
 
     return (
@@ -150,8 +175,8 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
             <section className="w-full py-12 bg-[#f5f7f9]">
                 <div className="mx-auto py-12 max-w-[1272px] px-5 md:px-0">
                     <button className="bg-[#066ac9] rounded-md px-[24px] mb-4 text-white py-[8px]">Digital Marketing</button>
-                    <h1 className="mb-2 text-3xl font-medium max-w-[60%]">
-                        The Complete Digital Marketing Course - 12 Courses in 1
+                    <h1 className="mb-2 text-3xl font-[600] max-w-[60%]">
+                        The Complete Digital Marketing Course - 12 Courses in 1 
                     </h1>
                     <small className="text-[15px] my-4 text-[#747579]">
                         Satisfied conveying a dependent contented he 
@@ -185,11 +210,11 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                 </div>
             </section>
             <section className="py-12 bg-white">
-                <div className="w-full max-w-[1272px] rounded-md mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-                    <div className="grid grid-cols-1 rounded-md shadow-2xl lg:col-span-2">
+                <div className="w-full max-w-[1272px] p-2 rounded-md mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div className="order-2 md:order-1 grid grid-cols-1 rounded-md shadow-2xl lg:col-span-2">
                         <div className="w-full p-2">
                             <Tabs defaultValue="" className="w-full">
-                                <TabsList className="py-6 bg-white">
+                                <TabsList className="py-6 bg-white flex flex-wrap mb-15 md:mb-0 h-auto w-full justify-start gap-1">
                                     {tabs.map((tab) => {
                                         return (
                                             <TabsTrigger value={tab} key={tab} 
@@ -247,11 +272,11 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                 </TabsContent>      
                                 <TabsContent value="Instructor">
                                     <div className="p-5">
-                                        <div className="flex">
-                                            <div className="img bg-red-100 rounded-md w-[329px] h-[328px]">
+                                        <div className="flex flex-col md:flex-row">
+                                            <div className="img bg-red-100 mx-auto rounded-md w-full md:w-[329px] h-[328px]">
 
                                             </div>
-                                            <div className="flex flex-col px-5 items-start">
+                                            <div className=" mt-4 md:mt-0 flex flex-col md:px-5 items-start">
                                                 <h3 className="text-2xl font-medium mb-3 lg:text-3xl">Louis Ferguson</h3>
                                                 <p className="mb-2">Instructor of Marketing</p>
                                                 <div className="flex text-xl items-center gap-7">
@@ -260,7 +285,7 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                                     <SlSocialGithub className="cursor-pointer"/>
                                                     <SlSocialYoutube className="text-red-400 cursor-pointer" />
                                                 </div>
-                                                <div className="my-3 flex flex-col gap-3 text-[16px] font-medium">
+                                                <div className="my-3 flex flex-row md:flex-col gap-3 text-[16px] font-medium">
                                                     <div className="flex items-center gap-2">
                                                         <FaStar className="text-yellow-500"/>
                                                         <div>
@@ -282,7 +307,7 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="text-[#747579] leading-loose py-4 my-4">
+                                        <div className="text-[#747579] leading-loose py-4 md:my-4">
                                             <h4 className="font-bold mb-5 text-black text-xl">About Instructor</h4>
                                             <p className="mb-4">Fulfilled direction use continual set him propriety continued. 
                                                 Saw met applauded favorite deficient engrossed concealed and her. 
@@ -296,10 +321,10 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                     </div>
                                 </TabsContent>      
                                 <TabsContent value="Reviews">
-                                    <CardHeader>
-                                                <CardTitle className="text-xl lg:text-2.5xl text-black mb-4 font-bold">Our Student Reviews</CardTitle>
-                                    </CardHeader>
                                     <div className="p-5">
+                                    <CardHeader>
+                                        <CardTitle className="text-xl lg:text-2.5xl text-black mb-4 font-bold">Our Student Reviews</CardTitle>
+                                    </CardHeader>
 
                                     <div className="w-full">
                                         <div className="flex items-center gap-3">
@@ -337,19 +362,34 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                     </div>
                                 </TabsContent>   
                                 <TabsContent value="Comment">
-                                    <CardHeader>
-                                        <CardTitle className="text-xl lg:text-2.5xl text-black mb-4 font-bold">Comments</CardTitle>
-                                    </CardHeader>
+                                    <div className="p-2">
+                                        <CardHeader>
+                                            <CardTitle className="text-xl lg:text-2.5xl text-black mb-4 font-bold">Comments</CardTitle>
+                                        </CardHeader>
 
-                                    <Comment />
-                                    <Comment />
-                                    <div className="w-full p-2">
-                                        <form onSubmit={handleSubmit}>
-                                            <textarea onChange={(e) => setComment(e.target.value)} className="w-full border border-1 p-3" placeholder="Leave a comment..." id="comment" >
+                                        {comments.map((comment, index) => {
+                                            return (
+                                                <Comment key={index} props={comment}/>
+                                            )
+                                        })}
 
-                                            </textarea>
-                                            <button type="submit" className="cursor-pointer my-2 p-2 bg-blue-100 rounded-sm hover:shadow-sm transition">Comment</button>
-                                        </form>
+                                        { user 
+                                        ? 
+                                        <div className="w-full p-2 flex gap-2">
+                                            <div>
+                                                <div className="rounded-full w-[40px] h-[40px] bg-red-100">
+                                            </div>
+                                            </div>
+                                            <form onSubmit={handleSubmit} className="w-full gap-2 flex">
+                                                <textarea onChange={(e) => setComment(e.target.value)} className="w-full border border-1 p-3" placeholder="Leave a comment..." id="comment" >
+
+                                                </textarea>
+                                                <button type="submit" className="cursor-pointer p-2 bg-blue-100 rounded-sm hover:shadow-sm transition">Comment</button>
+                                            </form>
+                                        </div>
+                                        :
+                                        null }
+
                                     </div>
                                 </TabsContent>       
                             </Tabs>
@@ -369,13 +409,13 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                 </div>
                                 <small className="text-red-600">5 days left at this price</small>
                                 <div className="w-full text-[14px] my-2 flex items-center justify-between">
-                                    <button className="border cursor-pointer border-1 border-blue-300 rounded-sm px-5 py-1">Free Trial</button>
+                                    <button className="border cursor-pointer border-1 border-blue-300 rounded-sm px-5 py-1 translate hover:bg-blue-300 hover:text-white">Free Trial</button>
                                     <button className="px-5 py-1 bg-green-300 cursor-pointer rounded-sm">Buy Course</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="w-full p-3 my-5 rounded-md shadow-2xl text-[#747579]">
+                        <div className="w-full p-5 my-5 rounded-md shadow-2xl text-[#747579]">
                             <h3 className="text-center font-bold text-xl mb-4 text-black">This course includes</h3>
                             <div className="w-full">
                                 <div className="w-full text-[14px] flex flex-col gap-2">

@@ -4,7 +4,7 @@ import { RiComputerLine } from "react-icons/ri";
 import { PiGraduationCapLight } from "react-icons/pi";
 import { IoDiamondOutline } from "react-icons/io5";
 import Link from "next/link";
-import { useAuthGuard } from "../../../../guards/useAuthGuard";
+import { useAuthGuard } from "../../../guards/useAuthGuard";
 import { Spinner } from "@/components/ui/spinner";
 
 const Dashboard = () => {

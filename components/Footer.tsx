@@ -73,14 +73,14 @@ export default function Footer() {
             <hr className="my-5"/>
             <div className="flex flex-col md:flex-row items-center justify-between">
                 <div>
-                    <small>Copyrights ©2026 Eduport. Build by StackBros</small>
+                    <small>Copyrights ©2026 SomaDuck. Built by TechBros</small>
                 </div>
                 <div className="flex items-center gap-6">
                     <div>
-                        <small>Terms of User</small>
+                        <small>Terms of Use</small>
                     </div>
                     <div>
-                        <small>Terms of User</small>
+                        <small>Terms of Use</small>
                     </div>
                 </div>
             </div>
