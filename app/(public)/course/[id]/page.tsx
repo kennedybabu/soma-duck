@@ -29,6 +29,7 @@ import { GraduationCap } from "lucide-react";
 import CourseReview from "@/components/CourseReview";
 import { Rating } from "react-simple-star-rating";
 import { useAuth } from "@/hooks/useAuth";
+import Link from "next/link";
 
 const items = [
   {
@@ -167,12 +168,12 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(comment)
-        // setComments();        
     }
 
     return (
         <div className="w-full mx-auto">
             <section className="w-full py-12 bg-[#f5f7f9]">
+                <Link href={"/create-course"}>Create course</Link>
                 <div className="mx-auto py-12 max-w-[1272px] px-5 md:px-0">
                     <button className="bg-[#066ac9] rounded-md px-[24px] mb-4 text-white py-[8px]">Digital Marketing</button>
                     <h1 className="mb-2 text-3xl font-[600] max-w-[60%]">
@@ -395,7 +396,7 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                             </Tabs>
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 lg:col-span-1 rounded-md">
+                    <div className="order-1 md:order-2 grid grid-cols-1 lg:col-span-1 rounded-md">
                         <div className="w-full h-[464px] shadow-xl rounded-md p-2">
                             <div className="hero-img w-full bg-red-100 h-[291px] rounded-md">
 
