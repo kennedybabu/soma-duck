@@ -7,6 +7,12 @@ interface CourseTileProps {
     course: Course
 }
 
+const levelStyles: Record<string, string> = {
+  "Beginner" : "bg-green-200 text-green-600",
+  "All Level" : "bg-blue-200 text-blue-600",
+  "Advanced" : "bg-red-200 text-red-600"
+}
+
 
 export default function CourseTile({ course }: CourseTileProps) {
 
@@ -18,7 +24,7 @@ export default function CourseTile({ course }: CourseTileProps) {
           </div>
           <div className="p-5">
               <div className="flex items-center justify-between">
-                <div className={`rounded-md text-[12px] mb-2 py-[6px] px-[10px] font-bold ${course.level === "All Level" ? "bg-green-200 text-green-600" : "bg-blue-200 text-blue-600"}`}>
+                <div className={`rounded-md text-[12px] mb-2 py-[6px] px-[10px] font-bold ${levelStyles[course.level]}`}>
                   {course.level}
                 </div>
                 <PiHeart className="text-2xl cursor-pointer"/>

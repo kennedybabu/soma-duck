@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { defineStepper } from "@stepperize/react";
-import CreateCourseDetail from "@/components/createCourseDetails";
+import CreateCourseDetail from "@/components/create-course/createCourseDetails";
+import CreateCourseFAQ from "@/components/create-course/createCourseFAQ";
 
 const tabs = defineStepper(
    [ 
@@ -60,7 +61,7 @@ export default function CreateCourse() {
                             stepper.match({
                                 details: () => <CreateCourseDetail />,
                                 media: () => <p> there</p>,
-                                info: () => <p>hola</p>
+                                info: () => <CreateCourseFAQ />
                             })
                         }
                     </div>

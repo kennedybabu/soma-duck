@@ -16,6 +16,8 @@ import RoundBGSVG from "@/components/svgs/RoundBGSVG";
 import HeaderSVG from "@/components/svgs/HeaderSVG";
 import HeroRightSVG from "@/components/svgs/HeroRightSVG";
 import { Rating } from "react-simple-star-rating";
+import { CiPlay1 } from "react-icons/ci";
+import { FaPlay } from "react-icons/fa";
 
 export default function Home() {
   const text = "Online learning and teaching marketplace with 5K+ courses & 10M students. Taught by experts to help you acquire new skills.";
@@ -152,14 +154,14 @@ export default function Home() {
             <ul className="grid grid-cols-2 text-sm gap-2 lg:grid-cols-3 md:mx-0">
               <li className="flex items-center gap-1 mx-auto"><HiCheckBadge /><span className="text-[#747579]">Learn with experts</span></li>
               <li className="flex items-center gap-1 mx-auto"><HiCheckBadge /><span className="text-[#747579]">Get certificate</span></li>
-              <li className="flex items-center gap-1 mx-auto col-span-2 lg:col-span-1"><HiCheckBadge /><span className="text-[#747579]">Get membership</span></li>
+              <li className="flex items-center gap-1 mx-auto col-span-2 lg:col-span-1"><HiCheckBadge/><span className="text-[#747579]">Get membership</span></li>
             </ul>
           </section>
 
           <div className="flex my-5 flex-col items-center gap-2 lg:gap-5 md:flex-row">
             <button className="order-2 md:order-1 my-4 md:my-0 py-3.25 px-6 bg-red-100 text-red-800 hover:bg-red-500 hover:text-white transition-all rounded-lg font-medium mb-6 md:mb-0 cursor-pointer">Get Started</button>
-            <div className="w-[60px] cursor-pointer h-[60px] bg-blue-100 flex items-center justify-center rounded-full">
-              <div className="w-[37px] h-[37px] bg-[#066ac9] flex items-center justify-center rounded-full"><p>\</p></div>
+            <div className="order-1 md:order-2 w-[70px] cursor-pointer h-[70px] bg-blue-100 flex items-center justify-center rounded-full">
+              <div className="w-[37px] h-[37px] bg-[#066ac9] flex items-center justify-center rounded-full"><FaPlay className="text-white"/></div>
             </div>
           </div>
         </div>
