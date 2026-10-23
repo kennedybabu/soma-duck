@@ -52,7 +52,7 @@ export default function CreateCourseDetail() {
             </h4>
             <hr className='my-4'/>
             <div className="w-full mt-4">
-                <form>
+                {/* <form> */}
                     <div className="flex flex-col my-4">
                         <label htmlFor="title" className="text-xs mb-0">Course Title</label>
                         <input id="title" style={inputStyles} {...register("title")} type="text" placeholder="Enter Course title" />
@@ -118,7 +118,7 @@ export default function CreateCourseDetail() {
                             <small className='text-red-500'>{ errors.price?.message }</small>
                         </div>
                     </div>
-                </form>
+                {/* </form> */}
             </div>
         </div>
     )

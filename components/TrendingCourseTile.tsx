@@ -1,6 +1,7 @@
 import { Course } from "@/types/course";
 import { PiBookmarkSimpleLight, PiClock } from "react-icons/pi";
 import Link from "next/link";
+import { Rating } from "react-simple-star-rating";
 
 export interface TrendingCourseTileProps {
     course: Course
@@ -34,7 +35,7 @@ export default function TrendingCourseTile({ course }: TrendingCourseTileProps){
                 <h3 className="font-bold text-[21px] mb-4 cursor-pointer">{course.title}</h3>
               </Link>
               <div className="w-full text-[#747579] my-3 text-sm flex justify-between">
-                <div>4.5 stars (2000)</div>
+                <div className="flex items-center"><Rating initialValue={4} size={16} readonly={true}/><span className="mb-0">(2000)</span></div>
                 <div>3500 (Student)</div>
               </div>
               <div className="flex items-center gap-1">

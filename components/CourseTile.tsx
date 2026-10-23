@@ -2,6 +2,7 @@ import { PiHeart, PiClock } from "react-icons/pi";
 import { CiGrid31 } from "react-icons/ci";
 import Link from "next/link";
 import { Course } from "@/types/course";
+import { Rating } from "react-simple-star-rating";
 
 interface CourseTileProps {
     course: Course
@@ -18,8 +19,8 @@ export default function CourseTile({ course }: CourseTileProps) {
 
     return (
     <div>
-        <div className="rounded-lg shadow-sm h-[527px] w-full md:w-[293px] md:h-[480px]">
-          <div className="card-img rounded-tr-[10px] rounded-tl-[10px] h-[224px] w-full bg-purple-300">
+        <div className="rounded-lg shadow-md h-[527px] w-full md:w-[293px] md:h-[480px]">
+          <div className="card-img rounded-tr-[10px] rounded-tl-[10px] h-[245px] w-full bg-purple-300">
 
           </div>
           <div className="p-5">
@@ -31,19 +32,19 @@ export default function CourseTile({ course }: CourseTileProps) {
               </div>
               <div>
                 <Link href={`/course/${course.id}`}>
-                  <h5 className="text-[21px] mb-2 font-bold">{course.title}</h5>
+                  <h5 className="text-xl mb-2">{course.title}</h5>
                 </Link>
-                <p className="mb-2 text-[15px] text-[#747579]">Lorem ipsum dolor sit amet. Quod fugiat illo consequatur animi.</p>
+                <p className="mb-2 text-[15px] text-[#747579]">Lorem ipsum dolor sit amet. Quod fugiat illo consequatur.</p>
               </div>
               <div className="flex gap-3 items-center text-[15px] justify-between">
-                <span>stars</span>
+                <Rating initialValue={4} size={16} readonly={true}/>                    
                 <span>4.5/5.0</span>
               </div>
               <hr className="my-2 text-[#747579]" />
-            <div className="flex items-center justify-between">
-                <div className="flex text-[20px] items-center gap-1">
+            <div className="flex items-center my-2 justify-between">
+                <div className="flex items-center gap-1">
                   <div>
-                    <PiClock className="text-red-600"/>
+                    <PiClock className="text-red-500"/>
                   </div>
                   <div>
                     <small>6h 56m</small>
@@ -52,7 +53,7 @@ export default function CourseTile({ course }: CourseTileProps) {
 
                 <div className="flex gap-1 items-center justify-between">
                   <div>
-                    <CiGrid31 />
+                    <CiGrid31 className="text-yellow-500"/>
                   </div>
                   <div>
                     <small>82 lectures</small>

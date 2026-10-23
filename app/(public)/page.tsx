@@ -168,13 +168,22 @@ export default function Home() {
         </div>
         <div className="flex-1 flex items-center justify-center w-full max-w-md md:max-w-none pb-10 md:pb-0">
           <div className="relative">
+            <div className="p-2 absolute bg-white top-1/2 -start-2 -translate-y-1/2 -mt-30 md:block hidden shadow-sm rounded-md ">
+              <Image src="/science.svg" width={40} height={50} alt="react icon"/>
+            </div>
+            <div className="p-2 absolute top-1/2 -end-6 -translate-y-1/2 mt-12 ms-12 z-20 lg:block hidden shadow-sm rounded-md ">
+              <Image src="/figma.svg" width={40} height={50} alt="react icon"/>
+            </div>
+            <div className="p-2 absolute md:top-0 top-28 -end-6 me-12 shadow-sm rounded-md ">
+              <Image src="/angular.svg" width={40} height={50} alt="react icon"/>
+            </div>
             <Image 
               src="/assets/hero.png"
               alt="hero section image"
               width={400}
               height={400}
               loading="eager"
-              className="w-full relative h-auto object-contain md:max-h-none"
+              className="w-full h-auto object-contain md:max-h-none"
               />
               <BlueBackgroundSVG />
 
@@ -262,7 +271,7 @@ export default function Home() {
                   role="tab"
                   aria-selected={currentPopularCourses === tab} 
                   type="button" 
-                  className={`py-2 px-4 my-1 items-center font-sm bg-blue-400 cursor-pointer transition ease-in rounded-md ${currentPopularCourses === tab ? "bg-blue-600 text-white shadow-md": "bg-blue-100"}`}>
+                  className={`py-2 px-4 my-1 items-center text-xs bg-blue-400 cursor-pointer transition ease-in rounded-md ${currentPopularCourses === tab ? "bg-blue-600 text-white shadow-md": "bg-blue-100"}`}>
                     {tab}
                 </button>
               )
