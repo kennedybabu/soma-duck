@@ -4,13 +4,13 @@ import { VscChromeClose } from "react-icons/vsc";
 export interface FAQItem {
     question: string;
     answer: string
-    id: number;
 }
 
 interface FAQProps {
     faq: FAQItem;
     onDelete: (id: number) => void;
 }
+
 export default function FAQ({ faq, onDelete }: FAQProps) {
 
     

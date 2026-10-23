@@ -4,7 +4,7 @@ import { HiCheckBadge } from "react-icons/hi2";
 import { RiComputerLine } from "react-icons/ri";
 import { AiOutlineUser } from "react-icons/ai";
 import { PiGraduationCapLight } from "react-icons/pi";
-import { BsPatchCheck } from "react-icons/bs";
+import { BsEnvelope, BsPatchCheck } from "react-icons/bs";
 import { BsShieldCheck } from "react-icons/bs";
 import { useState } from "react";
 import CourseTile from "@/components/CourseTile";
@@ -16,8 +16,9 @@ import RoundBGSVG from "@/components/svgs/RoundBGSVG";
 import HeaderSVG from "@/components/svgs/HeaderSVG";
 import HeroRightSVG from "@/components/svgs/HeroRightSVG";
 import { Rating } from "react-simple-star-rating";
-import { CiPlay1 } from "react-icons/ci";
 import { FaPlay } from "react-icons/fa";
+import { FaRegCircleCheck } from "react-icons/fa6";
+import BlueBackgroundSVG from "@/components/svgs/BlueBackground";
 
 export default function Home() {
   const text = "Online learning and teaching marketplace with 5K+ courses & 10M students. Taught by experts to help you acquire new skills.";
@@ -166,14 +167,35 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-1 flex items-center justify-center w-full max-w-md md:max-w-none pb-10 md:pb-0">
+          <div className="relative">
             <Image 
               src="/assets/hero.png"
               alt="hero section image"
               width={400}
               height={400}
               loading="eager"
-              className="w-full h-auto object-contain md:max-h-none"
+              className="w-full relative h-auto object-contain md:max-h-none"
               />
+              <BlueBackgroundSVG />
+
+              {/* transparent */}
+              <div className="hidden lg:absolute items-center p-4 bg-white/5 start-[-100] backdrop-blur-xs border border-body-bg/90 rounded-2xl bottom-[-40] z-30 hidden lg:flex gap-2 mb-12 ms-10 flex">
+                <div className="flex items-center justify-center">
+                  <div className="rounded-full bg-[#f7c32e] h-[56px] w-[56px] flex items-center justify-center">
+                    <BsEnvelope className="text-white text-2xl" />
+                  </div>
+                </div>
+                <div className="mb-1 flex text-white text-md font-bold">
+                  <div className="flex flex-col gap-2">
+                      <h6>Congratulations</h6>
+                      <small>Your admission completed</small>
+                  </div>
+                  <div>
+                    <FaRegCircleCheck  className="text-green-400"/>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
         <div>
           <HeaderSVG />

@@ -1,3 +1,5 @@
+import { CourseFormValues } from '@/lib/courseSchema';
+import { useFormContext, Controller } from 'react-hook-form';
 import Select, { SingleValue } from 'react-select'
 export interface CourseLevelOption {
     value: string;
@@ -30,6 +32,8 @@ export default function CreateCourseDetail() {
         { value: 'MARKETING', label: 'Marketing' }
     ]
 
+    const {register, control, formState: { errors }} = useFormContext<CourseFormValues>();
+
     const course = {};
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,53 +55,67 @@ export default function CreateCourseDetail() {
                 <form>
                     <div className="flex flex-col my-4">
                         <label htmlFor="title" className="text-xs mb-0">Course Title</label>
-                        <input id="title" style={inputStyles} onChange={handleChange} type="text" placeholder="Enter Course title" />
+                        <input id="title" style={inputStyles} {...register("title")} type="text" placeholder="Enter Course title" />
+                        <small className='text-red-500'>{ errors.title?.message }</small>
                     </div>
                     <div className="flex flex-col my-4">
                         <label htmlFor="description" className="text-xs mb-0">Short Description</label>
-                        <textarea id="description" style={inputStyles} placeholder="Enter Course Description" />
+                        <textarea id="description" {...register("description")} style={inputStyles} placeholder="Enter Course Description" />
+                        <small className='text-red-500'>{ errors.description?.message }</small>
                     </div>
                     <div className="flex flex-col gap-4 w-full md:flex-row">
                         <div className='w-full'>
-                            <label className='text-xs w-full'>
-                                Category
-                                <Select 
-                                    options={courseCategoryOptions} 
-                                    onChange={handleCourseCategoryChange}
-                                    // value={courseCategoryOptions.find(option => option.value === course.level || null)} 
-                                    />
-                            </label>
+                            <label className='text-xs w-full'>Category</label>
+                                <Controller name='category' control={control} render={({ field }) => (
+                                    <Select 
+                                        options={courseCategoryOptions} 
+                                        value={courseCategoryOptions.find((o) => o.value === field.value ) ?? null}
+                                        onChange={(option) => field.onChange(option?.value ?? "")}
+                                        onBlur={field.onBlur}
+                                        />
+                                )}
+                                />
+                                <small className='text-red-500'>{ errors.category?.message }</small>                           
                         </div>
 
                         <div className='w-full'>
-                            <label className='text-xs w-full'>
-                                Level
-                                <Select 
-                                    options={courseLevelOptions} 
-                                    onChange={handleCourseLevelChange}
-                                    // value={roleOptions.find(option => option.value === user.role || null)} 
-                                    />
-                            </label>
+                            <label className='text-xs w-full'>Level</label>
+                            <Controller 
+                                name='level'
+                                control={control}
+                                render={( { field }) => (
+                                    <Select 
+                                        options={ courseLevelOptions } 
+                                        onChange={( option ) => field.onChange(option?.value)}
+                                        value={ courseLevelOptions.find((o) => o.value === field.value ) ?? null }
+                                        onBlur={ field.onBlur }
+                                        />
+                                )}
+                                />
+                            <small className='text-red-500'>{ errors.level?.message }</small>
                         </div>
                     </div>
                     <div className='flex flex-col gap-4 my-4 w-full md:flex-row w-full'>
                         <div className="flex flex-col w-full">
-                            <label htmlFor="title" className="text-xs mb-0">Course Time</label>
-                            <input id="title" style={inputStyles} onChange={handleChange} type="text" placeholder="Course time" />
+                            <label htmlFor="courseTime" className="text-xs mb-0">Course Time</label>
+                            <input id="courseTime" style={inputStyles} type='number'  {...register("courseTime", { valueAsNumber: true })} placeholder="e.g 4 " />
+                            <small className='text-red-500'>{ errors.courseTime?.message }</small>
                         </div>
                         <div className="flex flex-col w-full">
-                            <label htmlFor="title" className="text-xs mb-0">Total Lectures</label>
-                            <input id="title" style={inputStyles} onChange={handleChange} type="text" placeholder="Total Course Lectures" />
+                            <label htmlFor="totalCourseLectures" className="text-xs mb-0">Total Lectures</label>
+                            <input id="totalCourseLectures" style={inputStyles} {...register("totalCourseLectures", { valueAsNumber: true })} type="number" placeholder="Total Course Lectures" />
+                            <small className='text-red-500'>{ errors.totalCourseLectures?.message }</small>
                         </div>
                     </div>
                     <div className='flex flex-col gap-4 my-4 w-full md:flex-row w-full'>
                         <div className="flex flex-col w-full">
-                            <label htmlFor="title" className="text-xs mb-0">Course Price</label>
-                            <input id="title" style={inputStyles} onChange={handleChange} type="text" placeholder="Course Price" />
+                            <label htmlFor="price" className="text-xs mb-0">Course Price</label>
+                            <input id="price" style={inputStyles} {...register("price", { valueAsNumber: true })} type="number" placeholder="Course Price" />
                         </div>
                         <div className="flex flex-col w-full">
-                            <label htmlFor="title" className="text-xs mb-0">Course Discount</label>
-                            <input id="title" style={inputStyles} onChange={handleChange} type="text" placeholder="Discount" />
+                            <label htmlFor="discount" className="text-xs mb-0">Course Discount</label>
+                            <input id="discount" style={inputStyles} {...register("discount", { valueAsNumber: true })} type="number" placeholder="Discount" />
+                            <small className='text-red-500'>{ errors.price?.message }</small>
                         </div>
                     </div>
                 </form>

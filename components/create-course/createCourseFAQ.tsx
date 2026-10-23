@@ -1,9 +1,8 @@
-import { CiCirclePlus } from "react-icons/ci"
-import CreateCourseFAQDialog from "./dialog/createCourseFAQs"
 import { useState } from "react"
-import { HiOutlinePencilSquare } from "react-icons/hi2";
-import { VscChromeClose } from "react-icons/vsc";
 import FAQ, { FAQItem } from "../FAQ";
+import CreateCourseFAQDialog from "./dialog/createCourseFAQs";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { CourseFormValues } from "@/lib/courseSchema";
 
 export default function CreateCourseFAQ() {
 
@@ -14,38 +13,39 @@ export default function CreateCourseFAQ() {
         'borderRadius' : '4px'
     }
 
-    const [FAQs, setFAQs] = useState<FAQItem[]>([]);
+    const { control } = useFormContext<CourseFormValues>();
+    const { fields, append, remove } = useFieldArray({ control, name: "faqs"})
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     }
 
-    const deleteFAQ = (id:number) => {
-        setFAQs((prev) => prev.filter((faq) => faq.id !== id))
-    }
+    // const deleteFAQ = (id:number) => {
+    //     setFaqs((prev) => prev.filter((faq) => faq.id !== id))
+    // }
 
     return (
         <div className="w-full px-1">
             <div className="flex items-center justify-between">
                 <h4 className="text-2xl my-1 md:text-3xl font-bold">
-                    Upload FAQs
+                    Upload faqs
                 </h4>
             </div>
             <hr className='my-4'/>
             <div className="w-full mt-4">
-               <CreateCourseFAQDialog onAdd={(faq) => setFAQs((prev) => [...prev, { ...faq, id: Date.now() }])}/>
+               <CreateCourseFAQDialog onAdd={(faq) => append(faq)} />
             </div>
-            { FAQs.length > 0 ? 
+            { fields.length > 0 ? 
             <div className="w-full bg-[#f5f7f9] rounded-sm  my-4 text-[#747579] p-2 md:p-3 lg:p-5">
-                { FAQs.map((faq, index) => {
+                { fields.map((field, index) => {
                    return (
-                    <FAQ faq={faq} key={faq.id} onDelete={deleteFAQ} />
+                    <FAQ faq={field} key={field.id} onDelete={() => remove(index)} />
                    )
                 })}               
             </div>
             : 
             <div className="w-full flex justify-center flex-col items-center">
-                <h6 className="font-[600]">NO FAQs</h6>
-                <small className="text-xs">Give FAQS</small>
+                <h6 className="font-[600]">NO faqs</h6>
+                <small className="text-xs">Give faqs</small>
             </div> }
         </div>
     )
