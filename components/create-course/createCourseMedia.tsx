@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 import { CourseFormValues } from "@/lib/courseSchema";
+import { useEffect, useState } from "react";
 
 const inputStyles = {
     'border' : '1px solid #D9D9D9',
@@ -13,6 +14,18 @@ const inputStyles = {
 export default function CreateCourseMedia() {
     const { setValue, watch, formState: { errors }} = useFormContext<CourseFormValues>()
     const thumbnail = watch("thumbnail")
+    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+
+    useEffect(() => {
+        if(!thumbnail) {
+            setPreviewUrl(null);
+            return;
+        }
+
+        const url = URL.createObjectURL(thumbnail);
+        setPreviewUrl(url);
+        return () => URL.revokeObjectURL(url);
+    }, [thumbnail])
 
     return (
         <div className="w-full px-1">
@@ -44,6 +57,10 @@ export default function CreateCourseMedia() {
                         <div className="max-w-[300px] my-3">
                             <small><span className="font-bold">Note: </span> Only JPG, JPEG and PNG. Our suggested dimensions are 600px * 450px. Larger image will be cropped to 4:3 to fit our thumbnails/previews</small>
                         </div>
+                    </div>
+                    <div className="w-full">
+                        { previewUrl ? (
+                            <Image className="mx-auto rounded-sm shadow-md" src={previewUrl} width={450} height={350} alt="selected course thumbnail preview" />) : null }
                     </div>
                 </div>
             </div>

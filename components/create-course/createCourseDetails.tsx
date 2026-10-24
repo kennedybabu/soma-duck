@@ -98,23 +98,23 @@ export default function CreateCourseDetail() {
                     <div className='flex flex-col gap-4 my-4 w-full md:flex-row w-full'>
                         <div className="flex flex-col w-full">
                             <label htmlFor="courseTime" className="text-xs mb-0">Course Time</label>
-                            <input id="courseTime" style={inputStyles} type='number'  {...register("courseTime", { valueAsNumber: true })} placeholder="e.g 4 " />
+                            <input id="courseTime" style={inputStyles} type='text'  {...register("courseTime", { valueAsNumber: true })} placeholder="e.g 4 " />
                             <small className='text-red-500'>{ errors.courseTime?.message }</small>
                         </div>
                         <div className="flex flex-col w-full">
                             <label htmlFor="totalCourseLectures" className="text-xs mb-0">Total Lectures</label>
-                            <input id="totalCourseLectures" style={inputStyles} {...register("totalCourseLectures", { valueAsNumber: true })} type="number" placeholder="Total Course Lectures" />
+                            <input id="totalCourseLectures" style={inputStyles} {...register("totalCourseLectures", { valueAsNumber: true })} type="text" placeholder="e.g 5" />
                             <small className='text-red-500'>{ errors.totalCourseLectures?.message }</small>
                         </div>
                     </div>
                     <div className='flex flex-col gap-4 my-4 w-full md:flex-row w-full'>
                         <div className="flex flex-col w-full">
                             <label htmlFor="price" className="text-xs mb-0">Course Price</label>
-                            <input id="price" style={inputStyles} {...register("price", { valueAsNumber: true })} type="number" placeholder="Course Price" />
+                            <input id="price" style={inputStyles} {...register("price", { valueAsNumber: true })} type="text" placeholder="e.g 1500" />
                         </div>
                         <div className="flex flex-col w-full">
                             <label htmlFor="discount" className="text-xs mb-0">Course Discount</label>
-                            <input id="discount" style={inputStyles} {...register("discount", { valueAsNumber: true })} type="number" placeholder="Discount" />
+                            <input id="discount" style={inputStyles} {...register("discount", { valueAsNumber: true })} type="text" placeholder="e.g 25%" />
                             <small className='text-red-500'>{ errors.price?.message }</small>
                         </div>
                     </div>

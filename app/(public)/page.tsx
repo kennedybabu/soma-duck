@@ -243,7 +243,7 @@ export default function Home() {
               <small>Online Students</small>
             </div>
           </div>
-          <div className="flex gap-8 justify-center items-center p-6 rounded-lg bg-[#D9D9D9]">
+          <div className="flex gap-8 justify-center items-center p-6 rounded-lg bg-[#17a2b861] text-black">
             <div>
               <BsPatchCheck className="text-5xl"/>
             </div>
@@ -316,17 +316,19 @@ export default function Home() {
       <section className="bg-[#f5f7f9] px-5 mx-auto pt-14 pb-11">
         <div className="max-w-[1272px] mx-auto grid grid-cols-1 lg:grid-cols-12 text-[#747579]">
             <div className="lg:col-span-7 lg:order-1 order-2">
-              <div className="grid md:grid-cols-12 grid-cols-1 gap-7 lg:mt-12">
-                <div className="tile bg-[#ffffff] z-[10] rounded-lg p-[24px] md:col-span-7 shadow-md z-[50] relative md:mt-12 mt-1 md:mb-0 mb-12">
+              <div className="grid md:grid-cols-12 my-5 md:my-0 grid-cols-1 gap-7 lg:mt-12">
+                <div className="relative md:col-span-7 mb-8 shadow-md md:mt-12">
                   <RoundBGSVG />
-                  <div className="mb-4 flex items-center justify-center">
-                    <div className="w-[40px] h-[40px] rounded-sm bg-red-200"></div>
-                  </div>
-                  <div className="relative text-center flex flex-col">
-                    <p className="mb-4 text-[15px]">Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed laughing</p>
-                    <span>stars</span>
-                      <Rating initialValue={4} size={19} readonly={true}/>                    
-                    <small className="font-bold text-black">Carolyn Cortiz</small>
+                  <div className="tile bg-[#ffffff] rounded-lg p-[24px] z-10 relative mt-1">
+                    <div className="mb-4 md:mb-0 flex items-center justify-center">
+                      <div className="w-[40px] h-[40px] rounded-sm bg-red-200"></div>
+                    </div>
+                    <div className="relative text-center flex flex-col">
+                      <p className="mb-4 text-[15px]">Moonlight newspaper up its enjoyment agreeable depending. Timed voice share led him to widen noisy young. At weddings believed laughing</p>
+                      <span>stars</span>
+                        <Rating initialValue={4} size={19} readonly={true}/>                    
+                      <small className="font-bold text-black">Carolyn Cortiz</small>
+                    </div>
                   </div>
                 </div>
                 <div className="md:col-span-5 hidden md:block">

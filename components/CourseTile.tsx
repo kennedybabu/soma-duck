@@ -34,7 +34,7 @@ export default function CourseTile({ course }: CourseTileProps) {
                 <Link href={`/course/${course.id}`}>
                   <h5 className="text-xl mb-2">{course.title}</h5>
                 </Link>
-                <p className="mb-2 text-[15px] text-[#747579]">Lorem ipsum dolor sit amet. Quod fugiat illo consequatur.</p>
+                <p className="mb-2 text-[14px] text-[#747579]">Lorem ipsum dolor sit amet. Quod fugiat illo consequatur.</p>
               </div>
               <div className="flex gap-3 items-center text-[15px] justify-between">
                 <Rating initialValue={4} size={16} readonly={true}/>                    

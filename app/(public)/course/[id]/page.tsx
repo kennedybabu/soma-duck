@@ -273,8 +273,8 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                 </TabsContent>      
                                 <TabsContent value="Instructor">
                                     <div className="p-5">
-                                        <div className="flex flex-col md:flex-row">
-                                            <div className="img bg-red-100 mx-auto rounded-md w-full md:w-[329px] h-[328px]">
+                                        <div className="flex flex-col md:flex-row md:items-start">
+                                            <div className="img bg-red-100 mx-auto md:mx-0 rounded-md w-full md:w-[329px] h-[328px]">
 
                                             </div>
                                             <div className=" mt-4 md:mt-0 flex flex-col md:px-5 items-start">
@@ -363,7 +363,7 @@ export default function Course({ params } : { params: Promise<{ id: string }>}) 
                                     </div>
                                 </TabsContent>   
                                 <TabsContent value="Comment">
-                                    <div className="p-2">
+                                    <div className="p-5">
                                         <CardHeader>
                                             <CardTitle className="text-xl lg:text-2.5xl text-black mb-4 font-bold">Comments</CardTitle>
                                         </CardHeader>

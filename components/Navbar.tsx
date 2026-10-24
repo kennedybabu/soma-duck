@@ -34,11 +34,11 @@ export default function Navbar() {
     }
 
     return (
-    <div className="w-full md:sticky top-0 bg-white z-20 shadow-[0_4px_6px_-4px_rgba(0,0,0,0.3)]">   
+    <div className="w-full p-2 md:sticky top-0 bg-white z-20 shadow-[0_4px_6px_-4px_rgba(0,0,0,0.3)]">   
         <div className="w-full h-[64px] relative max-w-[1272px] px-5 md:px-0 mx-auto flex items-center justify-between">
             <h2 className="font-bold text-2xl flex items-center gap-2 cursor-pointer">
                 <Link href={"/"}><SiDuckduckgo className="text-4xl"/></Link>
-                <span className="hidden md:flex">Soma <span className="text-[#FDA32E]">Duck</span></span>
+                <Link href={"/"}><span className="hidden md:flex">Soma <span className="text-[#FDA32E]">Duck</span></span></Link>
             </h2>
 
             {/* hide links on smaller screened devices */}
